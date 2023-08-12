@@ -570,6 +570,9 @@ int parse_options(int argc, char **argv) {
   // debug(1, "Looking for the configuration file \"%s\".", config.configfile);
 
   config_init(&config_file_stuff);
+#ifdef CONFIG_OPTION_ALLOW_OVERRIDES
+  config_set_option(&config_file_stuff, CONFIG_OPTION_ALLOW_OVERRIDES);
+#endif
 
   config_file_real_path = realpath(config.configfile, NULL);
   if (config_file_real_path == NULL) {
